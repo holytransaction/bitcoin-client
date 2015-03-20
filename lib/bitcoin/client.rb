@@ -194,6 +194,26 @@ class Bitcoin::Client
     @api.request 'listtransactions', account, count
   end
 
+  # Returns up to +count+ unspent transactions.
+  def listunspent(count = 10)
+    @api.request 'listunspent', count
+  end
+
+  # Returns up to +count+ locked unspent transactions.
+  def listlockunspent(count = 10)
+    @api.request 'listlockunspent', count
+  end
+
+  # Locks unspent transactions.
+  def lockunspent(array)
+    @api.request 'lockunspent', array
+  end
+
+  # Unlocks unspent transactions.
+  def unlockunspent(array)
+    @api.request 'lockunspent', true, array
+  end
+
   # Move from one account in your wallet to another.
   def move(fromaccount, toaccount, amount, minconf = 1, comment = nil)
     @api.request 'move', fromaccount, toaccount, amount, minconf, comment

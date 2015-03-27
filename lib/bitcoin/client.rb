@@ -196,7 +196,7 @@ class Bitcoin::Client
 
   # Returns up to +count+ unspent transactions.
   def listunspent(minconf = 1, maxconf = 999999)
-    @api.request 'listunspent', "minconf = #{minconf}", "maxconf = #{maxconf}"
+    @api.request 'listunspent', minconf, maxconf
   end
 
   # Returns up to +count+ locked unspent transactions.

@@ -206,7 +206,7 @@ class Bitcoin::Client
 
   # Locks unspent transactions.
   def lockunspent(array)
-    @api.request 'lockunspent', array
+    @api.request 'lockunspent', false, array
   end
 
   # Unlocks unspent transactions.

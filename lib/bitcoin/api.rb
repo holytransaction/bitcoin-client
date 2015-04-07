@@ -23,8 +23,8 @@ class Bitcoin::API
       :host => 'localhost',
       :port => 8332,
       :ssl  => false,
-      :open_timeout => 1,
-      :read_timeout => 1
+      :open_timeout => 30,
+      :read_timeout => 30
     }.merge(options)
   end
   

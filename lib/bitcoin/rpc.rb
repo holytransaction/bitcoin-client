@@ -29,7 +29,8 @@ class Bitcoin::RPC
                     open_timeout: @open_timeout,
                     timeout: @read_timeout
     ) do |respdata, request, result|
-      Rails.logger.debug (LOGGER_TAG + "RPC response #{respdata}")
+      Rails.logger.debug ("DEBUG: RPC request #{request.to_json}")
+      Rails.logger.debug ("DEBUG: RPC response #{respdata}")
       response = JSON.parse(respdata)
       raise Bitcoin::Errors::RPCError, response['error'] if response['error']
       response['result']

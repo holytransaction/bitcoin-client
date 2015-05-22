@@ -24,10 +24,9 @@ class Bitcoin::RPC
   end
 
   def dispatch(request)
-    RestClient.post(service_url, request.to_post_data,
-                    content_type: :json,
-                    open_timeout: @open_timeout,
-                    timeout: @read_timeout
+    RestClient::Request.execute(:method => :post, :url => service_url,
+      :payload => request.to_post_data, :headers => {content_type: :json},
+      :timeout => @read_timeout, :open_timeout => @open_timeout
     ) do |respdata, request, result|
       response = JSON.parse(respdata)
       raise Bitcoin::Errors::RPCError, response['error'] if response['error']
